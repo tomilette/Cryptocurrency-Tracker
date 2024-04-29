@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/scripts/app.js" charset="utf-8"></script>
+  </head>
+
+  <body>
+    <header class="App-header">
+      <div>
+        <h1 class="crypto_bulls">Crypto Bull</h1>
+        <!-- <img src="bitcoin.png" alt="" class="logo"> -->
+      </div>
+      <div class="navigationDiv">
+        <ul>
+            <li><a class="navLink" href='/'>&nbsp;Home </a></li><span class="pipe">|</span>
+          <% if (!user) { %>
+            <li><a class="navLink" href='/portfolio'>&nbsp;Portfolio </a></li><span class="pipe">|</span>
+            <li><a class="navLink" href='/favorites'>&nbsp;Favorites </a></li><span class="pipe">|</span>
+          <%  } else { %>
+            <li><a class="navLink" href='/portfolio/<%= user._id.toString() %>'>&nbsp;Portfolio </a></li><span class="pipe">|</span>
+            <li><a class="navLink" href='/favorites/<%= user._id.toString() %>'>&nbsp;Favorites </a></li><span class="pipe">|</span>
+          <%  } %>
+            <li><a class="navLink" href='/news'>&nbsp;News </a></li><span class="pipe">|</span>
+          <% if (user == undefined) { %>
+            <li><a class="navLink" href='/signup'>&nbsp;Sign Up </a></li><span class="pipe">|</span>
+            <li><a class="navLink" href='/login'>&nbsp;Log In</a></li>
+          <%  } else { %>
+            <li><a class="navLink cTab" href='/user/<%= user._id.toString() %>'>&nbsp;Profile </a></li><span class="pipe">|</span>
+            <li><a class="navLink" href='/logout'>&nbsp;Logout </a></li>
+          <%  } %>
+        </ul>
+      </div>
+    </header>
+    <h2 class="profile">Profile</h2>
+      <div class="center-align">
+      <br>
+        <div class="form">Email: <%= user.username %></div>
+        <br>
+        <div class="flexbox">
+          <form action="/user/<%= user._id %>/update" method="GET">
+            <input type="submit" class="waves-effect waves-light btn" value="Change Email">
+          </form>
+          <span class="spacing"></span>
+          <form action="/user/<%= user._id %>?_method=DELETE" method="POST">
+            <input type="submit" class="waves-effect waves-light btn" value="Delete Profile">
+          </form>
+        </div>
+        <br>
+      </div>
+    <div class="footerAlignment">
+    </div>
+    <footer>
+      <br>
+      <div class="social"> <span class="contactme">Contact Me</span>
+        <br>
+        <a href="https://www.linkedin.com/in/huntercote/" target="_blank"><i class="fab fa-linkedin" style="font-size:36px; color: white"></i></a>
+        <a href="https://github.com/hcote" target="_blank"><i class="fab fa-github" style="font-size:36px; color: white"></i></a>
+        <a href="mailto:hcote12@gmail.com" target="_blank"><i class="fa fab fa-envelope" style="font-size:36px; color: white"></i></a>
+        <br>
+        <br>
+        <span class="copyright">&#169; Hunter Cote 2018</span>
+      </div>
+      <br>
+    </footer>
+  </body>
+</html>
